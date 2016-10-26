@@ -31,11 +31,11 @@ function showsmall{D,P}(io::IO, x::ArbDec{D,P})
     str = string_small(x)
     print(io, str)
 end
-show_small{D,P}(x::ArbDec{D,P}) = show_small(STDOUT, x)
+showsmall{D,P}(x::ArbDec{D,P}) = showsmall(STDOUT, x)
 
 function showlarge{D,P}(io::IO, x::ArbDec{D,P})
     str = string_large(x)
     print(io, str)
 end
-show_large{D,P}(x::ArbDec{D,P}) = show_large(STDOUT, x)
+showlarge{D,P}(x::ArbDec{D,P}) = showlarge(STDOUT, x)
 
