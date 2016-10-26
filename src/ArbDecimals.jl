@@ -53,7 +53,8 @@ import ArbFloats: initializer, c_release_arb, @libarb,
     environmental defaults are constants
       given by the macros defined here
 =#
-macro digitsForSmallStrings() 12 end
+macro digitsForCompactStrings() 10 end
+macro digitsForSmallStrings() 17 end
 macro digitsForLargeStrings() 72 end
 
 
