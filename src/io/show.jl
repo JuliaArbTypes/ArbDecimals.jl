@@ -4,6 +4,12 @@ function showall{D,P}(io::IO, x::ArbDec{D,P})
 end
 showall{D,P}(x::ArbDec{D,P}) = showall(STDOUT, x)
 
+function showcompact{D,P}(io::IO, x::ArbDec{D,P})
+    str = stringcompact(x)
+    print(io, str)
+end
+showcompact{D,P}(x::ArbDec{D,P}) = showcompact(STDOUT, x)
+
 function show{D,P}(io::IO, x::ArbDec{D,P})
     str = string(x)
     print(io, str)
