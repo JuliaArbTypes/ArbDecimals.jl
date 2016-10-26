@@ -1,7 +1,7 @@
 module ArbDecimals
 
-export stringcompact, string_small, string_large,
-       showcompact, show_small, show_large,
+export string_all, string_compact, string_small, string_large,
+       showsmall, showlarge,
        two, three, four,
        abz, abz2, invsqrt, addmul, submul, muladd, mulsub,
        isexact, notexact,
