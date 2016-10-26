@@ -1,10 +1,10 @@
-function stringall{D,P}(x::ArbDec{D,P})
+function string_all{D,P}(x::ArbDec{D,P})
     cstr = ccall(@libarb(arb_get_str), Ptr{UInt8}, (Ptr{ArbDec}, Int, UInt), &x, D, 2%UInt)
     str = unsafe_string(cstr)
     return str
 end
 
-function stringcompact{D,P}(x::ArbDec{D,P})
+function string_compact{D,P}(x::ArbDec{D,P})
     digs = min(D, @digitsForCompactStrings())
     cstr = ccall(@libarb(arb_get_str), Ptr{UInt8}, (Ptr{ArbDec}, Int, UInt), &x, D, 2%UInt)
     str = unsafe_string(cstr)
