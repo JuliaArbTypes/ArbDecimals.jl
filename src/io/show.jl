@@ -10,6 +10,19 @@ function showcompact{D,P}(io::IO, x::ArbDec{D,P})
 end
 showcompact{D,P}(x::ArbDec{D,P}) = showcompact(STDOUT, x)
 
+function show_small{D,P}(io::IO, x::ArbDec{D,P})
+    str = string_small(x)
+    print(io, str)
+end
+show_small{D,P}(x::ArbDec{D,P}) = show_small(STDOUT, x)
+
+function show_large{D,P}(io::IO, x::ArbDec{D,P})
+    str = string_large(x)
+    print(io, str)
+end
+show_large{D,P}(x::ArbDec{D,P}) = show_large(STDOUT, x)
+
+
 function show{D,P}(io::IO, x::ArbDec{D,P})
     str = string(x)
     print(io, str)
