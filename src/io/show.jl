@@ -5,8 +5,8 @@ function show{D,P}(io::IO, x::ArbDec{D,P})
 end
 show{D,P}(x::ArbDec{D,P}) = show(STDOUT, x)
 =#
-show{D,P}(io::IO, x::ArbDec{D,P}) = show_small(io, x)
-show{D,P}(x::ArbDec{D,P}) = show_small(STDOUT, x)
+show{D,P}(io::IO, x::ArbDec{D,P}) = showsmall(io, x)
+show{D,P}(x::ArbDec{D,P}) = showsmall(STDOUT, x)
 
 function show{D,P}(io::IO, x::ArbDec{D,P}, digs::Int)
     str = string(x, digs)
