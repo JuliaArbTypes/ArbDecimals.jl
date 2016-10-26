@@ -58,7 +58,7 @@ macro digitsForLargeStrings() 72 end
 
 
 
-include("type/ArbDec.jl")
+include("type/ArbDecimal.jl")
 include("type/aspects.jl")
 include("type/convert.jl")
 include("type/promote.jl")
