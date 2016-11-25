@@ -1,6 +1,5 @@
 
-for (op,cfunc) in (
-    (:exp,:arb_exp), (:expm1, :arb_expm1),
+for (op,cfunc) in ((:exp,:arb_exp), (:expm1, :arb_expm1),
     (:log,:arb_log), (:log1p, :arb_log1p),
     (:sin, :arb_sin), (:sinpi, :arb_sinpi), (:cos, :arb_cos), (:cospi, :arb_cospi),
     (:tan, :arb_tan), (:cot, :arb_cot),
@@ -10,7 +9,7 @@ for (op,cfunc) in (
     (:sinc, :arb_sinc),
     (:gamma, :arb_gamma), (:lgamma, :arb_lgamma), (:zeta, :arb_zeta),
     (:digamma, :arb_digamma), (:rgamma, :arb_rgamma)
-    )
+    )    
   @eval begin
     function ($op){D,P}(x::ArbDec{D,P})
       z = initializer(ArbDec{D,P})
