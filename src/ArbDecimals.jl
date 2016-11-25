@@ -12,7 +12,7 @@ export string_all, string_compact, string_small, string_large,
        includesAnInteger, excludesIntegers, includesZero, excludesZero,
        includesPositive, excludesPositive, includesNegative, excludesNegative,
        includesNonpositive,  includesNonnegative,
-      simeq, nsime, prec, preceq, succ, succeq, # non-strict total ordering comparisons
+       simeq, nsime, prec, preceq, succ, succeq, # non-strict total ordering comparisons
        (≃), (≄), (≺), (⪯), (≻), (⪰),           #    matched binary operators
        upperbound, lowerbound, bounds,
        areequal, notequal, approxeq, (≊),
@@ -36,7 +36,7 @@ import Base: hash, convert, promote_rule, STDIN, STDOUT,
              signbit, abs, abs2, inv,
              (+), (-), (*), (/), (^), (%),
              sqrt, hypot,
-             exp, expm1, log, log1p, log2, log10, logbase,
+             exp, expm1, log, log1p, log2, log10,
              sin, cos, tan, csc, sec, cot, sinc,
              sinh, cosh, tanh, csch, sech, coth, 
              asin, acos, atan, acsc, asec, acot, atan2, 
