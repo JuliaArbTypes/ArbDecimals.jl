@@ -26,6 +26,15 @@ function convert{D,P}(::Type{ArbDec{D,P}}, x::Float64)
     return z
 end
 
+function convert{D,P,Sym}(::Type{ArbDec{D,P}}, x::Irrational{Sym})
+    bf_precision = precision(BigFloat)
+    setprecision(BigFloat, precision(T)+24)        
+    bf_x = convert(BigFloat, x)
+    z = convert(ArbDec{D,P}, bf_x)
+    setprecision(BigFloat, bf_precision)
+    return z
+end
+
 function convert{D,P}(::Type{ArbDec{D,P}}, x::String)
     z = initializer(ArbDec{D,P})
     ok = ccall(@libarb(arb_set_str), Int, (Ptr{ArbDec}, Ptr{UInt8}, Int), &z, x, P)
