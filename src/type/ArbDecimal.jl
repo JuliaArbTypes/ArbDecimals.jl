@@ -13,6 +13,15 @@ type ArbDec{D,P} <: AbstractFloat
 end
 
 
+"bits of internal precision"
+precision2{D,P}(::Type{ArbDec{D,P}}) = P
+precision2{D,P}(x::ArbDec{D,P}) = precision2(ArbDec{D,P})
+
+"digits of external precision"
+precision10{D,P}(::Type{ArbDec{D,P}}) = D
+precision10{D,P}(x::ArbDec{D,P}) = precision10(ArbDec{D,P})
+
+
 macro workingDigitsGivenWorkingBits(bits)
     quote cld(($bits * 3010), 10000) end
 end
@@ -105,5 +114,4 @@ typealias Dec525 ArbDec{ 525, 3514 }
 typealias Dec550 ArbDec{ 550, 3680 }
 typealias Dec575 ArbDec{ 575, 3846 }
 typealias Dec600 ArbDec{ 600, 4012 }
-
 
