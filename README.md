@@ -2,12 +2,7 @@
 =========== 
 #### reliable and performant extended precision floating point math
 
-Jeffrey Sarnoff © 2016 Sep 15 in New York, USA
-## ArbDecimals.jl
-=========== 
-#### reliable and performant extended precision floating point math
-
-Jeffrey Sarnoff © 2016 Sep 15 in New York, USA
+Copyrith © 2016 by Jeffrey Sarnoff.  Released 2016-Sep-15 under the MIT License.
 
 =========== 
 
