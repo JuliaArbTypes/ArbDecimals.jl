@@ -37,6 +37,16 @@ function abz2{T<:ArbDec}(x::T)
     return a*a
 end
 
+for (op,cfunc) in ((:floor, :arb_floor), (:ceil, :arb_ceil))
+  @eval begin
+    function ($op){D,P}(x::ArbDec{D,P})
+      z = initializer(ArbDec{D,P})
+      ccall(@libarb($cfunc), Void, (Ptr{ArbDec{D,P}}, Ptr{ArbDec{D,P}}, Int), &z, &x, P)
+      return z
+    end
+  end
+end
+
 for (op,cfunc) in ((:inv, :arb_inv), (:sqrt, :arb_sqrt), (:invsqrt, :arb_rsqrt))
   @eval begin
     function ($op){D,P}(x::ArbDec{D,P})
