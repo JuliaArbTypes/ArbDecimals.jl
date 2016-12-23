@@ -47,6 +47,25 @@ for (op,cfunc) in ((:floor, :arb_floor), (:ceil, :arb_ceil))
   end
 end
 
+function floor{D,P,T}(::Type{T}, x::ArbDec{D,P})
+    y = floor(x)
+    return convert(T, y)
+end
+
+function ceil{D,P,T}(::Type{T}, x::ArbDec{D,P})
+    y = ceil(x)
+    return convert(T, y)
+end
+
+function trunc{D,P}(x::ArbDec{D,P})
+    return ispositive(x) ? floor(x) : ceil(x)
+end
+
+function trunc{D,P,T}(::Type{T}, x::ArbDec{D,P})
+    return convert(T, ispositive(x) ? floor(x) : ceil(x))
+end
+
+
 for (op,cfunc) in ((:inv, :arb_inv), (:sqrt, :arb_sqrt), (:invsqrt, :arb_rsqrt))
   @eval begin
     function ($op){D,P}(x::ArbDec{D,P})
