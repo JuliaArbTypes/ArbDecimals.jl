@@ -2,7 +2,7 @@
 =========== 
 #### reliable and performant extended precision floating point math
 
-Copyrith © 2016 by Jeffrey Sarnoff.  Released 2016-Sep-15 under the MIT License.
+Copyrith © 2016 by Jeffrey Sarnoff.  Released under the MIT License on 15-Sep-2016.
 
 =========== 
 
