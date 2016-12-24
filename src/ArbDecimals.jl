@@ -74,7 +74,6 @@ include("basics/sorting.jl")
 
 include("io/string.jl")
 include("io/show.jl")
-include("io/stream.jl")
 
 include("math/arith.jl")
 include("math/elementary.jl")
