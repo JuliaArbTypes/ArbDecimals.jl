@@ -63,9 +63,10 @@ macro digitsForLargeStrings() 72 end
 
 
 include("type/ArbDecimal.jl")
-include("type/aspects.jl")
 include("type/convert.jl")
 include("type/promote.jl")
+include("type/float.jl")
+include("type/interval.jl")
 
 include("basics/predicates.jl")
 include("basics/compare.jl")
