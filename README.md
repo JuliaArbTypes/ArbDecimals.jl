@@ -2,11 +2,11 @@
 =========== 
 #### reliable and performant extended precision floating point math
 
-Copyrith © 2016 by Jeffrey Sarnoff.  Released under the MIT License on 15-Sep-2016.
+Copyright © 2016 by Jeffrey Sarnoff.  Released under the MIT License on 15-Sep-2016.
 
 =========== 
 
-### overview
+### Overview
 
 ArbDecimals exports a floating point type realized for the decimal digit resolutions named:    
 Dec25, Dec50, Dec75, Dec100, Dec150, Dec200, Dec250, Dec300, Dec350, Dec400, Dec450, Dec500.
@@ -23,7 +23,7 @@ With matrices, det, chol, lu work well; eigenvals and svdvals need interval algo
 
 
 
-### installation
+### Installation
 
 ArbDecimals depends on ArbFloats, which needs Nemo.  It is best to add these packages one at a time:
 ```
@@ -43,7 +43,7 @@ quit()
 
 =========== 
 
-### overview
+### Overview
 
 ArbDecimals exports a floating point type realized for the decimal digit resolutions named:    
 Dec25, Dec50, Dec75, Dec100, Dec150, Dec200, Dec250, Dec300, Dec350, Dec400, Dec450, Dec500.
@@ -60,7 +60,7 @@ With matrices, det, chol, lu work well; eigenvals and svdvals need interval algo
 
 
 
-### installation
+### Installation
 
 ArbDecimals depends on ArbFloats, which needs Nemo.  It is best to add these packages one at a time:
 ```
