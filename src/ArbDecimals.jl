@@ -25,7 +25,7 @@ export string_all, string_compact, string_small, string_large,
        Dec400, Dec425, Dec450, Dec475, Dec500, Dec525, Dec550, Dec575, Dec600
 
 import Base: hash, convert, promote_rule, STDIN, STDOUT,
-             string, show, showcompact, showall,
+             string, show,
              copy, deepcopy, typemax, typemin, realmax, realmin,
              decompose, zero, one,
              isequal, isless, (==),(!=),(<),(<=),(>=),(>),
