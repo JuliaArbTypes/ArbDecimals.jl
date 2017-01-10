@@ -131,18 +131,16 @@ end
 function contains{D,P}(x::ArbDec{D,P}, y::ArbDec{D,P})
     return 0 != ccall(@libarb(arb_contains), Int, (Ptr{ArbDec{D,P}}, Ptr{ArbDec{D,P}}), &x, &y)
 end
+"""true iff x does not span (cover) all of y"""
+function notcontains{D,P}(x::ArbDec{D,P}, y::ArbDec{D,P})
+    return 0 != ccall(@libarb(arb_contains), Int, (Ptr{ArbDec{D,P}}, Ptr{ArbDec{D,P}}), &x, &y)
+end
 
 """true iff y spans (covers) all of x"""
 function iscontainedby{D,P}(x::ArbDec{D,P}, y::ArbDec{D,P})
     return 0 != ccall(@libarb(arb_contains), Int, (Ptr{ArbDec{D,P}}, Ptr{ArbDec{D,P}}), &y, &x)
 end
-
-"""true iff x does not span (cover) all of y"""
-function doesnotcontain{D,P}(x::ArbDec{D,P}, y::ArbDec{D,P})
-    return 0 != ccall(@libarb(arb_contains), Int, (Ptr{ArbDec{D,P}}, Ptr{ArbDec{D,P}}), &x, &y)
-end
-
 """true iff y does not span (cover) all of x"""
-function isnotcontainedby{D,P}(x::ArbDec{D,P}, y::ArbDec{D,P})
+function notcontainedby{D,P}(x::ArbDec{D,P}, y::ArbDec{D,P})
     return 0 == ccall(@libarb(arb_contains), Int, (Ptr{ArbDec{D,P}}, Ptr{ArbDec{D,P}}), &y, &x)
 end
