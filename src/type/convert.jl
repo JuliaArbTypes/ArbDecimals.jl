@@ -42,7 +42,8 @@ function convert{D,P}(::Type{ArbDec{D,P}}, x::String)
 end
 
 function convert{D,P}(::Type{String}, x::ArbDec{D,P})
-    digs = @workingDigitsGivenWorkingBits(P)
+    p = P
+    digs = @workingDigitsGivenWorkingBits(p)
     cstr = ccall(@libarb(arb_get_str), Ptr{UInt8}, (Ptr{ArbDec}, Int, UInt), &x, digs, 2%UInt)
     s = unsafe_string(cstr)
     return s
@@ -52,7 +53,7 @@ end
 convert{D,P}(::Type{ArbDec{D,P}}, x::ArbDec{D,P}) = x
 
 function convert{D,P,E,Q}(::Type{ArbDec{D,P}}, x::ArbDec{E,Q})
-    str = convert(String, x)
+    str = stringall(x)
     res = convert(ArbDec{D,P}, str)
     return res
 end
