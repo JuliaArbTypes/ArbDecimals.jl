@@ -9,9 +9,6 @@ export stringall, stringcompact, stringsmall, stringlarge,
        notnan, notinf, notposinf, notneginf, notfinite,
        iszero, notzero, nonzero, isone, notone, notinteger,
        ispositive, notpositive, isnegative, notnegative,
-       includesAnInteger, excludesIntegers, includesZero, excludesZero,
-       includesPositive, excludesPositive, includesNegative, excludesNegative,
-       includesNonpositive,  includesNonnegative,
        simeq, nsime, prec, preceq, succ, succeq, # non-strict total ordering comparisons
        (≃), (≄), (≺), (⪯), (≻), (⪰),           #    matched binary operators
        upperbound, lowerbound, bounds,
