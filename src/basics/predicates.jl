@@ -128,11 +128,11 @@ function donotoverlap{D,P}(x::ArbDec{D,P}, y::ArbDec{D,P})
 end
 
 """true iff x spans (covers) all of y"""
-function contains{D,P}(x::ArbDec{D,P}, y::ArbDec{D,P})
+function doescontain{D,P}(x::ArbDec{D,P}, y::ArbDec{D,P})
     return 0 != ccall(@libarb(arb_contains), Int, (Ptr{ArbDec{D,P}}, Ptr{ArbDec{D,P}}), &x, &y)
 end
 """true iff x does not span (cover) all of y"""
-function notcontains{D,P}(x::ArbDec{D,P}, y::ArbDec{D,P})
+function doesnotcontain{D,P}(x::ArbDec{D,P}, y::ArbDec{D,P})
     return 0 != ccall(@libarb(arb_contains), Int, (Ptr{ArbDec{D,P}}, Ptr{ArbDec{D,P}}), &x, &y)
 end
 
