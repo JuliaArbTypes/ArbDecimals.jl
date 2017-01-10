@@ -51,6 +51,7 @@ import ArbFloats: initializer, c_release_arb, @libarb,
                   upperbound, lowerbound, bounds, 
                   ArfFloat
 
+using ReadableNumbers
 
 #=
     environmental defaults are constants
