@@ -23,12 +23,12 @@ function radius{D,P}(x::ArbDec{D,P})
     return z
 end
 
-function diameter{T<:ArbDec}(x::T)
-    return 2.0*radius(x)
+function diameter{D,P}(x::ArbDec{D,P})
+    r = radius(x)
+    return r+r
 end
 
-function upperbound{T<:ArbDec}(x::T)
-    P = precision(T)
+function upperbound{D,P}(x::ArbDec{D,P})
     a = initializer( ArfFloat{D,P} )
     z = initializer( ArbDec{D,P} )
     ccall(@libarb(arb_get_ubound_arf), Void, (Ptr{ArfFloat}, Ptr{ArbDec}, Int), &a, &x, P)
@@ -36,8 +36,7 @@ function upperbound{T<:ArbDec}(x::T)
     return z
 end
 
-function lowerbound{T<:ArbDec}(x::T)
-    P = precision(T)
+function lowerbound{D,P}(x::ArbDec{D,P})
     a = initializer( ArfFloat{D,P} )
     z = initializer( ArbDec{D,P} )
     ccall(@libarb(arb_get_lbound_arf), Void, (Ptr{ArfFloat}, Ptr{ArbDec}, Int), &a, &x, P)
@@ -45,7 +44,7 @@ function lowerbound{T<:ArbDec}(x::T)
     return z
 end
 
-bounds{T<:ArbDec}(x::T) = ( lowerbound(x), upperbound(x) )
+bounds{D,P}(x::ArbDec{D,P}) = ( lowerbound(x), upperbound(x) )
 
 
 """
@@ -53,7 +52,7 @@ isolate_nonnegative_content(x::ArbDec)
 returns x without any content < 0
 if x is strictly < 0, returns ArbDec's NaN
 """
-function isolate_nonnegative_content{T<:ArbDec}(x::T)
+function isolate_nonnegative_content{D,P}(x::ArbDec{D,P})
     lo, hi = bounds(x)
     z = if lo > 0
               x
@@ -77,7 +76,7 @@ isolate_positive_content(x::ArbDec)
 returns x without any content <= 0
 if x is strictly <= 0, returns ArbDecs' NaN
 """
-function isolate_positive_content{T<:ArbDec}(x::T)
+function isolate_positive_content{D,P}(x::ArbDec{D,P})
     lo, hi = bounds(x)
     z = if lo > 0
               x
@@ -101,7 +100,7 @@ force_nonnegative_content(x::ArbDec)
 returns x without any content < 0
 if x is strictly < 0, returns 0
 """
-function force_nonnegative_content{T<:ArbDec}(x::T)
+function force_nonnegative_content{D,P}(x::ArbDec{D,P})
     lo, hi = bounds(x)
     z = if lo >= 0
               x
@@ -118,7 +117,7 @@ force_positive_content(x::ArbDec)
 returns x without any content <= 0
 if x is strictly <= 0, returns eps(lowerbound(x))
 """
-function force_positive_content{T<:ArbDec}(x::T)
+function force_positive_content{D,P}(x::ArbDec{D,P})
     lo, hi = bounds(x)
     z = if lo > 0
               x
@@ -136,7 +135,7 @@ Returns the effective relative error of x measured in bits,
   top bit in the radius and the top bit in the midpoint, plus one.
   The result is clamped between plus/minus ARF_PREC_EXACT.
 """
-function relativeError{T<:ArbDec}(x::T)
+function relativeError{D,P}(x::ArbDec{D,P})
     re_bits = ccall(@libarb(arb_rel_error_bits), Int, (Ptr{ArbDec},), &x)
     return re_bits
 end
@@ -145,8 +144,8 @@ end
 Returns the effective relative accuracy of x measured in bits,
   equal to the negative of the return value from relativeError().
 """
-function relativeAccuracy{T<:ArbDec}(x::T)
-    ra_bits = ccall(@libarb(arb_rel_accuracy_bits), Int, (Ptr{T},), &x)
+function relativeAccuracy{D,P}(x::ArbDec{D,P})
+    ra_bits = ccall(@libarb(arb_rel_accuracy_bits), Int, (Ptr{ArbDec},), &x)
     return ra_bits
 end
 
@@ -156,7 +155,7 @@ Returns the number of bits needed to represent the absolute value
   sufficient to represent x exactly.
   Returns 0 if the midpoint of x is a special value.
 """
-function midpointPrecision{T<:ArbDec}(x::T)
+function midpointPrecision{D,P}(x::ArbDec{D,P})
     mp_bits = ccall(@libarb(arb_bits), Int, (Ptr{ArbDec},), &x)
     return mp_bits
 end
@@ -167,8 +166,7 @@ Sets y to a trimmed copy of x: rounds x to a number of bits equal
   guard bits. The resulting ball is guaranteed to contain x,
   but is more economical if x has less than full accuracy.
 """
-function trimmed{T<:ArbDec}(x::T)
-    P = precision(T)
+function trimmed{D,P}(x::ArbDec{D,P})
     z = initializer( ArbDec{D,P} )
     ccall(@libarb(arb_trim), Void, (Ptr{ArbDec}, Ptr{ArbDec}), &z, &x)
     return z
