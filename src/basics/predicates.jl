@@ -39,41 +39,8 @@ function notneginf{D,P}(x::ArbDec{D,P})
 end
 
 
-"""midpoint(x) and radius(x) are zero"""
-function iszero{D,P}(x::ArbDec{D,P})
-    return 0 != ccall(@libarb(arb_is_zero), Int, (Ptr{ArbDec{D,P}},), &x)
-end
-"""true iff midpoint(x) or radius(x) are not zero"""
-function notzero{D,P}(x::ArbDec{D,P})
-    return 0 == ccall(@libarb(arb_is_zero), Int, (Ptr{ArbDec{D,P}},), &x)
-end
-
-"""true iff zero is not within [upperbound(x), lowerbound(x)]"""
-function nonzero{D,P}(x::ArbDec{D,P})
-    return 0 != ccall(@libarb(arb_is_nonzero), Int, (Ptr{ArbDec{D,P}},), &x)
-end
-
-"""true iff midpoint(x) is one and radius(x) is zero"""
-function isone{D,P}(x::ArbDec{D,P})
-    return 0 != ccall(@libarb(arb_is_one), Int, (Ptr{ArbDec{D,P}},), &x)
-end
-
-"""true iff midpoint(x) is not one or midpoint(x) is one and radius(x) is nonzero"""
-function notone{D,P}(x::ArbDec{D,P})
-    return 0 == ccall(@libarb(arb_is_one), Int, (Ptr{ArbDec{D,P}},), &x)
-end
-
-"""true iff radius is zero"""
-function isexact{D,P}(x::ArbDec{D,P})
-    return 0 != ccall(@libarb(arb_is_exact), Int, (Ptr{ArbDec{D,P}},), &x)
-end
-"""true iff radius is nonzero"""
-function notexact{D,P}(x::ArbDec{D,P})
-    return 0 == ccall(@libarb(arb_is_exact), Int, (Ptr{ArbDec{D,P}},), &x)
-end
-
-isexact(x::Integer) = true
-notexact(x::Integer) = false
+isinteger{T<:Integer}(x::T) = true
+notinteger{T<:Integer}(x::T) = false
 
 """true iff midpoint(x) is an integer and radius(x) is zero"""
 function isinteger{D,P}(x::ArbDec{D,P})
@@ -84,30 +51,58 @@ function notinteger{D,P}(x::ArbDec{D,P})
     return 0 == ccall(@libarb(arb_is_int), Int, (Ptr{ArbDec{D,P}},), &x)
 end
 
-isinteger{T<:Integer}(x::T) = true
-notinteger{T<:Integer}(x::T) = false
+"""midpoint(x) and radius(x) are zero"""
+function iszero{D,P}(x::ArbDec{D,P})
+    return 0 != ccall(@libarb(arb_is_zero), Int, (Ptr{ArbDec{D,P}},), &x)
+end
+"""true iff midpoint(x) or radius(x) are not zero"""
+function notzero{D,P}(x::ArbDec{D,P})
+    return 0 == ccall(@libarb(arb_is_zero), Int, (Ptr{ArbDec{D,P}},), &x)
+end
+"""true iff zero is not within [upperbound(x), lowerbound(x)]"""
+function nonzero{D,P}(x::ArbDec{D,P})
+    return 0 != ccall(@libarb(arb_is_nonzero), Int, (Ptr{ArbDec{D,P}},), &x)
+end
+
+"""true iff midpoint(x) is one and radius(x) is zero"""
+function isone{D,P}(x::ArbDec{D,P})
+    return 0 != ccall(@libarb(arb_is_one), Int, (Ptr{ArbDec{D,P}},), &x)
+end
+"""true iff midpoint(x) is not one or midpoint(x) is one and radius(x) is nonzero"""
+function notone{D,P}(x::ArbDec{D,P})
+    return 0 == ccall(@libarb(arb_is_one), Int, (Ptr{ArbDec{D,P}},), &x)
+end
+
+
+isexact(x::Integer) = true
+notexact(x::Integer) = false
+"""true iff radius is zero"""
+function isexact{D,P}(x::ArbDec{D,P})
+    return 0 != ccall(@libarb(arb_is_exact), Int, (Ptr{ArbDec{D,P}},), &x)
+end
+"""true iff radius is nonzero"""
+function notexact{D,P}(x::ArbDec{D,P})
+    return 0 == ccall(@libarb(arb_is_exact), Int, (Ptr{ArbDec{D,P}},), &x)
+end
+
 
 """true iff lowerbound(x) is positive"""
 function ispositive{D,P}(x::ArbDec{D,P})
     return 0 != ccall(@libarb(arb_is_positive), Int, (Ptr{ArbDec{D,P}},), &x)
+end
+"""true iff upperbound(x) is zero or negative"""
+function notpositive{D,P}(x::ArbDec{D,P})
+    return 0 != ccall(@libarb(arb_is_nonpositive), Int, (Ptr{ArbDec{D,P}},), &x)
 end
 
 """true iff upperbound(x) is negative"""
 function isnegative{D,P}(x::ArbDec{D,P})
     return  0 != ccall(@libarb(arb_is_negative), Int, (Ptr{ArbDec{D,P}},), &x)
 end
-
-"""true iff upperbound(x) is zero or negative"""
-function notpositive{D,P}(x::ArbDec{D,P})
-    return 0 != ccall(@libarb(arb_is_nonpositive), Int, (Ptr{ArbDec{D,P}},), &x)
-end
-excludesPositive{D,P}(x::ArbDec{D,P}) = notpositive(x)
-
 """true iff lowerbound(x) is zero or positive"""
 function notnegative{D,P}(x::ArbDec{D,P})
     return 0 != ccall(@libarb(arb_is_nonnegative), Int, (Ptr{ArbDec{D,P}},), &x)
 end
-excludesNegative{D,P}(x::ArbDec{D,P}) = notnegative(x)
 
 # two parameter predicates
 
