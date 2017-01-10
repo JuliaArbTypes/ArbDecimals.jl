@@ -5,10 +5,10 @@ export string_all, string_compact, string_small, string_large,
        two, three, four,
        abz, abz2, invsqrt, addmul, submul, muladd, mulsub,
        isexact, notexact,
-       isposinf, isneginf,
-       notnan, notinf, notposinf, notneginf, notfinite,
-       iszero, notzero, nonzero, isone, notone, notinteger,
        ispositive, notpositive, isnegative, notnegative,
+       isposinf, notposinf, isneginf, notneginf,
+       notnan, notinf, notfinite,
+       iszero, notzero, nonzero, isone, notone, notinteger,
        simeq, nsime, prec, preceq, succ, succeq, # non-strict total ordering comparisons
        (≃), (≄), (≺), (⪯), (≻), (⪰),           #    matched binary operators
        upperbound, lowerbound, bounds,
