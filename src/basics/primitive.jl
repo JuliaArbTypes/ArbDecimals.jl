@@ -87,12 +87,6 @@ function trim{D,P}(x::ArbDec{D,P})
     ccall(@libarb(arb_trim), Void, (Ptr{ArbDec}, Ptr{ArbDec}), &z, &x)
     return z
 end
-function trim{D,P}(x::ArbDec{D,P})
-    P = precision(T)
-    z = initializer(ArbDec{D,P})
-    ccall(@libarb(arb_trim), Void, (Ptr{ArbDec}, Ptr{ArbDec}), &z, &x)
-    return z
-end
 
 """
 Rounds x to a clean estimate of x as a point value.
