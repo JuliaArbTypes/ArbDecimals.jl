@@ -45,11 +45,11 @@ import Base: hash, convert, promote_rule, STDIN, STDOUT,
              factorial, gamma, digamma, zeta
 
 #using ArbFloats
-import ArbFloats: initializer, c_release_arb, @libarb,
+import ArbFloats: ArfFloat, ArbFloat,
+                  initializer, c_release_arb, @libarb,
                   ptr_to_midpoint, ptr_to_radius,
                   midpoint, radius, diameter,
-                  upperbound, lowerbound, bounds, 
-                  ArfFloat
+                  upperbound, lowerbound, bounds 
 
 using ReadableNumbers
 
