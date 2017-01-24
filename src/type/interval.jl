@@ -135,7 +135,7 @@ Returns the effective relative error of x measured in bits,
   top bit in the radius and the top bit in the midpoint, plus one.
   The result is clamped between plus/minus ARF_PREC_EXACT.
 """
-function relativeError{D,P}(x::ArbDec{D,P})
+function relative_error{D,P}(x::ArbDec{D,P})
     re_bits = ccall(@libarb(arb_rel_error_bits), Int, (Ptr{ArbDec},), &x)
     return re_bits
 end
@@ -144,7 +144,7 @@ end
 Returns the effective relative accuracy of x measured in bits,
   equal to the negative of the return value from relativeError().
 """
-function relativeAccuracy{D,P}(x::ArbDec{D,P})
+function relative_accuracy{D,P}(x::ArbDec{D,P})
     ra_bits = ccall(@libarb(arb_rel_accuracy_bits), Int, (Ptr{ArbDec},), &x)
     return ra_bits
 end
@@ -155,7 +155,7 @@ Returns the number of bits needed to represent the absolute value
   sufficient to represent x exactly.
   Returns 0 if the midpoint of x is a special value.
 """
-function midpointPrecision{D,P}(x::ArbDec{D,P})
+function midpoint_precision{D,P}(x::ArbDec{D,P})
     mp_bits = ccall(@libarb(arb_bits), Int, (Ptr{ArbDec},), &x)
     return mp_bits
 end
