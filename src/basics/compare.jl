@@ -13,7 +13,7 @@ for (op,cop) in ((:(==), :(arb_eq)), (:(!=), :(arb_ne)),
                  (:(<), :(arb_lt)),  (:(>), :(arb_gt))  )
   @eval begin
     function ($op){D,P}(a::ArbDec{D,P}, b::ArbDec{D,P})
-        return Bool(ccall(@libarb($cop), Cint, (Ptr{T}, Ptr{T}), &a, &b) )
+        return Bool(ccall(@libarb($cop), Cint, (Ptr{ArbDec{D,P}}, Ptr{ArbDec{D,P}}), &a, &b) )
     end
     ($op){P,Q}(a::ArbDec{P}, b::ArbDec{Q}) = ($op)(promote(a,b)...)
     ($op){D,P,R<:Real}(a::ArbDec{D,P}, b::R) = ($op)(promote(a,b)...)
@@ -22,12 +22,12 @@ for (op,cop) in ((:(==), :(arb_eq)), (:(!=), :(arb_ne)),
 end
 
 function (≃){D,P}(a::ArbDec{D,P}, b::ArbDec{D,P})
-    return Bool(ccall(@libarb(arb_eq), Cint, (Ptr{T}, Ptr{T}), &a, &b))
+    return Bool(ccall(@libarb(arb_eq), Cint, (Ptr{ArbDec{D,P}}, Ptr{ArbDec{D,P}}), &a, &b))
 end
 simeq{D,P}(a::ArbDec{D,P}, b::ArbDec{D,P}) = (≃)(a,b)
 
 function (≄){D,P}(a::ArbDec{D,P}, b::ArbDec{D,P})
-    return !Bool(ccall(@libarb(arb_eq), Cint, (Ptr{T}, Ptr{T}), &a, &b))
+    return !Bool(ccall(@libarb(arb_eq), Cint, (Ptr{ArbDec{D,P}}, Ptr{ArbDec{D,P}}), &a, &b))
 end
 nsime{D,P}(a::ArbDec{D,P}, b::ArbDec{D,P}) = (≄)(a,b)
 
