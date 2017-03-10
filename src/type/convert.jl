@@ -53,7 +53,7 @@ end
 convert{D,P}(::Type{ArbDec{D,P}}, x::ArbDec{D,P}) = x
 
 function convert{D,P,E,Q}(::Type{ArbDec{D,P}}, x::ArbDec{E,Q})
-    str = stringall(x)
+    str = string_all(x)
     res = convert(ArbDec{D,P}, str)
     return res
 end
