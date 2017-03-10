@@ -101,14 +101,6 @@ function convert{D,P}(::Type{ArbDec{D,P}}, x::Rational{BigInt})
     return z
 end
 
-
-
-    
-
-
-
-
-
 # derived conversions
 
 convert{D,P}(::Type{ArbDec{D,P}}, x::UInt32)  = convert(ArbDec{D,P}, x%UInt64)
